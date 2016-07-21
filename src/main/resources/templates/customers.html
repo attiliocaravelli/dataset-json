@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Technical Test</title>
+	<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+     <div th:if="${not #lists.isEmpty(customers)}">
+        <h2>Customer List</h2>
+        <table class="table table-striped">
+            <tr>
+            	<th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>In Mailing List</th>
+                <th>View</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"><a href="/customer/${customer.id}">ID</a></td>
+                <td th:text="${customer.name}">Name</td>
+                <td th:text="${customer.email}">Email</td>
+                <td th:text="${customer.age}">Age</td>
+                <td th:text="${customer.city}">City</td>
+                <td th:text="${customer.country}">Country</td>
+                <td th:text="${customer.inMailingList} ? 'Yes' : 'No' " />
+                <td><a th:href="${'/customer/' + customer.id}">View</a></td>
+                <td><a th:href="${'/customer/edit/' + customer.id}">Edit</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
